@@ -154,7 +154,7 @@
                         type: currentType
                     };
 
-                    fetch('http://localhost:3000/api/messages', {
+                    fetch('https://lock-9d9s.onrender.com/api/messages', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -184,7 +184,7 @@
             }
 
             function fetchMessages() {
-                fetch('http://localhost:3000/api/messages')
+                fetch('https://lock-9d9s.onrender.com/api/messages')
                 .then(response => response.json())
                 .then(data => {
                     chatMessages.innerHTML = '';
