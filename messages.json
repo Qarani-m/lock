@@ -1,0 +1,58 @@
+[
+  {
+    "message": "Hello, world!",
+    "time": "14:30",
+    "date": "2024-09-25",
+    "bt": "false",
+    "type": "client"
+  },
+  {
+    "message": "from the support",
+    "time": "2:35:20 PM",
+    "date": "9/25/2024",
+    "bt": "false",
+    "type": "support"
+  },
+  {
+    "message": "from the client",
+    "time": "2:35:59 PM",
+    "date": "9/25/2024",
+    "bt": "false",
+    "type": "client"
+  },
+  {
+    "message": "sf",
+    "time": "2:36:45 PM",
+    "date": "9/25/2024",
+    "bt": "false",
+    "type": "client"
+  },
+  {
+    "message": "h",
+    "time": "2:37:14 PM",
+    "date": "9/25/2024",
+    "bt": "false",
+    "type": "client"
+  },
+  {
+    "message": "df",
+    "time": "2:38:33 PM",
+    "date": "9/25/2024",
+    "bt": "false",
+    "type": "client"
+  },
+  {
+    "message": "wewwwwwwwwwwwwwwwwwwwwwwwwwwww",
+    "time": "2:38:41 PM",
+    "date": "9/25/2024",
+    "bt": "false",
+    "type": "client"
+  },
+  {
+    "message": "dd",
+    "time": "14:42",
+    "date": "25/September/2024",
+    "bt": "true",
+    "type": "client"
+  }
+]

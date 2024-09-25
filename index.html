@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .chat-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
+        }
+        .chat-header {
+            background-color: #075e54;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .message {
+            max-width: 60%;
+            margin-bottom: 20px;
+            clear: both;
+        }
+        .client {
+            float: right;
+            background-color: #dcf8c6;
+            border-radius: 18px 18px 0 18px;
+        }
+        .support {
+            float: left;
+            background-color: #ffffff;
+            border-radius: 18px 18px 18px 0;
+        }
+        .message-content {
+            padding: 10px 15px;
+        }
+        .message-meta {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+        .chat-input {
+            display: flex;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        #messageInput {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 30px;
+            margin-right: 10px;
+        }
+        #sendButton {
+            background-color: #075e54;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        #typeToggle {
+            margin-right: 10px;
+            padding: 10px;
+            background-color: #128C7E;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chat Interface</h2>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be inserted here -->
+        </div>
+        <div class="chat-input">
+            <button id="typeToggle">Client</button>
+            <input type="text" id="messageInput" placeholder="Type a message...">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
+            const typeToggle = document.getElementById('typeToggle');
+            let currentType = 'client';
+
+            typeToggle.addEventListener('click', function() {
+                currentType = currentType === 'client' ? 'support' : 'client';
+                typeToggle.textContent = currentType.charAt(0).toUpperCase() + currentType.slice(1);
+            });
+
+            sendButton.addEventListener('click', sendMessage);
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            function formatTime(date) {
+                const hours = date.getHours().toString().padStart(2, '0');
+                const minutes = date.getMinutes().toString().padStart(2, '0');
+                return `${hours}:${minutes}`;
+            }
+
+            function formatDate(date) {
+                const day = date.getDate().toString().padStart(2, '0');
+                const monthNames = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ];
+                const monthName = monthNames[date.getMonth()];
+                const year = date.getFullYear();
+                return `${day}/${monthName}/${year}`;
+            }
+
+            function sendMessage() {
+                const message = messageInput.value.trim();
+                if (message) {
+                    const now = new Date();
+                    const messageData = {
+                        message: message,
+                        time: formatTime(now),
+                        date: formatDate(now),
+                        bt: "true",
+                        type: currentType
+                    };
+
+                    fetch('http://localhost:3000/api/messages', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(messageData),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        messageInput.value = '';
+                        fetchMessages();
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                }
+            }
+
+            function addMessageToUI(msg) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', msg.type);
+                messageElement.innerHTML = `
+                    <div class="message-content">${msg.message}</div>
+                    <div class="message-meta">${msg.date} ${msg.time}</div>
+                `;
+                chatMessages.appendChild(messageElement);
+            }
+
+            function fetchMessages() {
+                fetch('http://localhost:3000/api/messages')
+                .then(response => response.json())
+                .then(data => {
+                    chatMessages.innerHTML = '';
+                    data.forEach(addMessageToUI);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+
+            fetchMessages();
+            setInterval(fetchMessages, 5000);
+        });
+    </script>
+</body>
+</html>
+
