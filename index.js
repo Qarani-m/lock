@@ -4,7 +4,7 @@ const port = 3000;
 
 // Simple GET request that returns true or false randomly
 app.get('/status', (req, res) => {
-    const randomBoolean = Math.random() < 0.5; // Generates either true or false
+    const randomBoolean = true; // Generates either true or false
     res.json({ status: randomBoolean });
 });
 
