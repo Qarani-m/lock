@@ -46,6 +46,27 @@ app.get('/status', (req, res) => {
 });
 
 
+const allowedDeviceIds = [
+  'TP1A.220624.014',
+];
+
+// API endpoint to check if a device is allowed
+app.post('/check_device', (req, res) => {
+  const { deviceId } = req.body;
+  
+  if (!deviceId) {
+    return res.status(400).json({ error: 'Device ID is required' });
+  }
+
+  const isAllowed = allowedDeviceIds.includes(deviceId);
+  res.json({ status: isAllowed });
+});
+
+// API endpoint to get all allowed devices
+app.get('/allowed_devices', (req, res) => {
+  res.json({ devices: allowedDeviceIds });
+});
+
 // POST endpoint to send a message
 app.post('/api/messages', async (req, res) => {
 
