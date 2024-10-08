@@ -47,7 +47,7 @@ app.get('/status', (req, res) => {
 
 
 const allowedDeviceIds = [
-  'TP1A.220624.013', //moki
+  'TP1A.220624.014', //moki
 ];
 
 // API endpoint to check if a device is allowed
