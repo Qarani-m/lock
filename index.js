@@ -58,8 +58,8 @@ app.get('/status', (req, res) => {
     res.json({ status: randomBoolean });
 });
 
-//const allowedDeviceIds = ['TP1A.220624.014']; // Allowed device IDs
-const allowedDeviceIds = []; // Allowed device IDs
+const allowedDeviceIds = ['TP1A.220624.014']; // Allowed device IDs
+//const allowedDeviceIds = []; // Allowed device IDs
 
 // API to check if a device is allowed
 app.post('/check_device', (req, res) => {
