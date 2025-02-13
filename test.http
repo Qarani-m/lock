@@ -1,0 +1,31 @@
+### Get paypal status
+GET  http://localhost:3000/status/pp-status
+
+
+### Toggle the app status
+POST http://localhost:3000/status/pp-toggle-app
+Content-Type: application/json
+
+
+
+### Add a blocked user
+POST http://localhost:3000/status/pp-update-blocked-users
+Content-Type: application/json
+
+{
+  "userId": "userId619",
+  "userEmail": "email@gmail.com",
+  "action": "add"
+}
+
+
+
+### Remove a blocked user
+POST http://localhost:3000/status/pp-update-blocked-users
+Content-Type: application/json
+
+{
+  "userId": "userId619",
+  "userEmail": "email@gmail.com",
+  "action": "remove"
+}

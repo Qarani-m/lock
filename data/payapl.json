@@ -1,0 +1,15 @@
+{
+  "isAppBlocked": true,
+  "blockedUsers": [
+    {
+      "userId": "userId19",
+      "userEmail": "email@gmail.com",
+      "isActive": false
+    },
+    {
+      "userId": "userId619",
+      "userEmail": "email@gmail.com",
+      "isActive": true
+    }
+  ]
+}
