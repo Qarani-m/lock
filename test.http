@@ -33,6 +33,40 @@ Content-Type: application/json
   "userId": "userId19"
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ==========================================================================aaaaaaaaaaaaaaaaaaaaaaaaaaaa### Get Extension status
 ###
 GET http://localhost:3000/status/ext-status
@@ -82,8 +116,43 @@ Content-Type: application/json
   "userId": "userId620"
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Get Mpesa status
 GET http://localhost:3000/status/mpesa-status
+Content-Type: application/json
+
+{
+  "type": "wise"
+}
 
 ### Toggle Mpesa app status
 POST http://localhost:3000/status/mpesa-toggle-app
@@ -124,8 +193,50 @@ Content-Type: application/json
   "userId": "userId621"
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Get Wise status
 GET http://localhost:3000/status/wise-status
+Content-Type: application/json
+
+{
+  "type": "wise"
+}
 
 ### Toggle Wise app status
 POST http://localhost:3000/status/wise-toggle-app
