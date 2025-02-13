@@ -43,7 +43,7 @@ exports.toggleAppStatus = async (req, res) => {
 exports.checkUserStatus = async (req, res) => {
     try {
         const { type } = req.params;
-        const { userId } = req.body;
+        const { userId } = req.body;check-user-status
         if (!userId) {
             return res.status(400).json({ error: 'User ID is required' });
         }

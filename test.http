@@ -2,7 +2,7 @@
 GET http://localhost:3000/status/pp-status
 
 ### Toggle PayPal app status
-POST http://localhost:3000/status/pp-toggle-app
+POST https://lock-9d9s.onrender.com/status/pp-toggle-app
 Content-Type: application/json
 
 ### Add a user to PayPal blocklist
@@ -276,3 +276,10 @@ Content-Type: application/json
   "type": "wise",
   "userId": "userId622"
 }
+
+
+
+
+
+
+
