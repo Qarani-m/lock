@@ -30,6 +30,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Routes
 app.use('/api/messages', messageRoutes);
 app.use('/status', statusRoutes);
+app.use('/mpesa', statusRoutes);
+app.use('/wise', statusRoutes);
+app.use('/ext', statusRoutes);
 
 
 

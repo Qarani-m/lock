@@ -14,8 +14,11 @@ router.post('/pp-user', statusController.checkUserStatus);
 router.post('/pp-toggle-app', statusController.toggleAppStatus);
 router.post('/pp-update-blocked-users', statusController.updateBlockedUsers);
 
-
-
+// ext
+router.get('/ext-status', statusController.getAppStatus);
+router.post('/ext-user', statusController.checkUserStatus);
+router.post('/ext-toggle-app', statusController.toggleAppStatus);
+router.post('/ext-update-blocked-users', statusController.updateBlockedUsers);
 
 // mpesa
 

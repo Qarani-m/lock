@@ -3,7 +3,8 @@ GET  http://localhost:3000/status/pp-status
 
 
 ### Toggle the app status
-POST http://localhost:3000/status/pp-toggle-app
+# POST http://localhost:3000/status/pp-toggle-app
+POST https://lock-9d9s.onrender.com/status/pp-toggle-app
 Content-Type: application/json
 
 
