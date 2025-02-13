@@ -1,9 +1,9 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-class PPStatus {
-    constructor() {
-        this.statusFile = path.join(__dirname, '../data/payapl.json');
+class StatusManager {
+    constructor(filename) {
+        this.statusFile = path.join(__dirname, `../data/${filename}.json`);
     }
 
     async readStatusFile() {
@@ -59,6 +59,7 @@ class PPStatus {
         );
         return await this.writeStatusFile(status);
     }
+
     async checkUserStatus(userId) {
         const status = await this.readStatusFile();
         const user = status.blockedUsers.find(user => user.userId === userId);
@@ -66,4 +67,10 @@ class PPStatus {
     }
 }
 
-module.exports = new PPStatus();
+
+const PPStatus = new StatusManager('payapl');
+const ExtStatus = new StatusManager('ext');
+const MpesaStatus = new StatusManager('mpesa');
+const WiseStatus = new StatusManager('wise');
+
+module.exports = { PPStatus, ExtStatus, MpesaStatus, WiseStatus };

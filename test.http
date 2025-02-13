@@ -1,45 +1,167 @@
-### Get paypal status
-GET  http://localhost:3000/status/pp-status
+### Get PayPal status
+GET http://localhost:3000/status/pp-status
 
-
-### Toggle the app status
-# POST http://localhost:3000/status/pp-toggle-app
-POST https://lock-9d9s.onrender.com/status/pp-toggle-app
+### Toggle PayPal app status
+POST http://localhost:3000/status/pp-toggle-app
 Content-Type: application/json
 
-
-
-### Add a user
+### Add a user to PayPal blocklist
 POST http://localhost:3000/status/pp-update-blocked-users
 Content-Type: application/json
 
 {
-  "userId": "userId619",
+  "userId": "userId6199",
   "userEmail": "email@gmail.com",
   "action": "add"
 }
 
-
-
-### Remove a user
+### Remove a user from PayPal blocklist
 POST http://localhost:3000/status/pp-update-blocked-users
 Content-Type: application/json
 
 {
-  "userId": "userId619",
+  "userId": "userId6199",
   "userEmail": "email@gmail.com",
   "action": "remove"
 }
 
-
-
-
-
-### Remove a blocked user
-POST  http://localhost:3000/status/pp-user
+### Check PayPal user status
+POST http://localhost:3000/status/pp-user
 Content-Type: application/json
 
 {
-  "userId": "userId619"
+  "userId": "userId19"
 }
 
+# ==========================================================================aaaaaaaaaaaaaaaaaaaaaaaaaaaa### Get Extension status
+###
+GET http://localhost:3000/status/ext-status
+Content-Type: application/json
+
+{
+  "type": "ext"
+}
+
+
+### Toggle Extension app status
+POST http://localhost:3000/status/ext-toggle-app
+Content-Type: application/json
+
+{
+  "type": "ext"
+}
+
+### Add a user to Extension blocklist
+POST http://localhost:3000/status/ext-update-blocked-users
+Content-Type: application/json
+
+{
+  "type": "ext",
+  "userId": "userId620",
+  "userEmail": "email2@gmail.com",
+  "action": "add"
+}
+
+### Remove a user from Extension blocklist
+POST http://localhost:3000/status/ext-update-blocked-users
+Content-Type: application/json
+
+{
+  "type": "ext",
+  "userId": "userId620",
+  "userEmail": "email2@gmail.com",
+  "action": "remove"
+}
+
+### Check Extension user status
+POST http://localhost:3000/status/ext-user
+Content-Type: application/json
+
+{
+  "type": "ext",
+  "userId": "userId620"
+}
+
+### Get Mpesa status
+GET http://localhost:3000/status/mpesa-status
+
+### Toggle Mpesa app status
+POST http://localhost:3000/status/mpesa-toggle-app
+Content-Type: application/json
+
+{
+  "type": "mpesa"
+}
+
+### Add a user to Mpesa blocklist
+POST http://localhost:3000/status/mpesa-update-blocked-users
+Content-Type: application/json
+
+{
+  "type": "mpesa",
+  "userId": "userId621",
+  "userEmail": "email3@gmail.com",
+  "action": "add"
+}
+
+### Remove a user from Mpesa blocklist
+POST http://localhost:3000/status/mpesa-update-blocked-users
+Content-Type: application/json
+
+{
+  "type": "mpesa",
+  "userId": "userId621",
+  "userEmail": "email3@gmail.com",
+  "action": "remove"
+}
+
+### Check Mpesa user status
+POST http://localhost:3000/status/mpesa-user
+Content-Type: application/json
+
+{
+  "type": "mpesa",
+  "userId": "userId621"
+}
+
+### Get Wise status
+GET http://localhost:3000/status/wise-status
+
+### Toggle Wise app status
+POST http://localhost:3000/status/wise-toggle-app
+Content-Type: application/json
+
+{
+  "type": "wise"
+}
+
+### Add a user to Wise blocklist
+POST http://localhost:3000/status/wise-update-blocked-users
+Content-Type: application/json
+
+{
+  "type": "wise",
+  "userId": "userId622",
+  "userEmail": "email4@gmail.com",
+  "action": "add"
+}
+
+### Remove a user from Wise blocklist
+POST http://localhost:3000/status/wise-update-blocked-users
+Content-Type: application/json
+
+{
+  "type": "wise",
+  "userId": "userId622",
+  "userEmail": "email4@gmail.com",
+  "action": "remove"
+}
+
+### Check Wise user status
+POST http://localhost:3000/status/wise-user
+Content-Type: application/json
+
+{
+  "type": "wise",
+  "userId": "userId622"
+}

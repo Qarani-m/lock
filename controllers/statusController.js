@@ -1,73 +1,64 @@
-const PPStatus = require('../models/PPStatus');
+const { PPStatus, ExtStatus, MpesaStatus, WiseStatus } = require('../models/PPStatus');
 
+const getManager = (type) => {
 
-exports.getStatus = (req, res) => {
-    const randomBoolean = true;
-    res.json({ status: randomBoolean });
-};
-
-exports.checkDevice = (req, res) => {
-    const { deviceId } = req.body;
-    const allowedDeviceIds = ['TP1A.220624.014'];
-
-    if (!deviceId) {
-        return res.status(400).json({ error: 'Device ID is required' });
+    console.log(type);
+    switch (type) {
+        case 'ext': return ExtStatus;
+        case 'mpesa': return MpesaStatus;
+        case 'wise': return WiseStatus;
+        case 'paypal': return PPStatus;
+        default: return PPStatus; // Default to PayPal
     }
-
-    const isAllowed = allowedDeviceIds.includes(deviceId);
-    res.json({ status: isAllowed });
 };
 
-exports.getAllowedDevices = (req, res) => {
-    const allowedDeviceIds = ['TP1A.220624.014'];
-    res.json({ devices: allowedDeviceIds });
-};
-
-
-
-// payapl
 exports.getAppStatus = async (req, res) => {
     try {
-        const status = await PPStatus.getStatus();
+        const { type } = req.body || req.params;
+        const manager = getManager(type);
+        
+        const status = await manager.getStatus();
         res.json(status);
     } catch (error) {
-        console.error('Error getting PP status:', error);
+        console.error(`Error getting ${type} status:`, error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };
 
 exports.toggleAppStatus = async (req, res) => {
     try {
-        const updatedStatus = await PPStatus.toggleAppStatus();
+        const { type } = req.params;
+        const manager = getManager(type);
+        const updatedStatus = await manager.toggleAppStatus();
         res.json({ 
-            message: 'App status updated', 
+            message: `${type} app status updated`, 
             appStatus: updatedStatus 
         });
     } catch (error) {
-        console.error('Error toggling PP status:', error);
+        console.error(`Error toggling ${type} status:`, error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };
 
 exports.checkUserStatus = async (req, res) => {
     try {
+        const { type } = req.params;
         const { userId } = req.body;
         if (!userId) {
             return res.status(400).json({ error: 'User ID is required' });
         }
-        console.log(!userId)
-        const isActive = await PPStatus.checkUserStatus(userId);
+        const manager = getManager(type);
+        const isActive = await manager.checkUserStatus(userId);
         res.json({ userId, isActive });
     } catch (error) {
-        console.error('Error checking user status:', error);
+        console.error(`Error checking ${type} user status:`, error);
         res.status(500).json({ error: 'Internal server error' });
     }
-}
-
-
+};
 
 exports.updateBlockedUsers = async (req, res) => {
     try {
+        const { type } = req.params;
         const { userId, userEmail, action } = req.body;
         let updatedStatus;
 
@@ -75,20 +66,22 @@ exports.updateBlockedUsers = async (req, res) => {
             return res.status(400).json({ error: 'User ID and User Email are required' });
         }
 
+        const manager = getManager(type);
+
         if (action === 'add') {
-            updatedStatus = await PPStatus.addBlockedUser(userId, userEmail);
+            updatedStatus = await manager.addBlockedUser(userId, userEmail);
         } else if (action === 'remove') {
-            updatedStatus = await PPStatus.removeBlockedUser(userId);
+            updatedStatus = await manager.removeBlockedUser(userId);
         } else {
             return res.status(400).json({ error: 'Invalid action. Use "add" or "remove"' });
         }
 
         res.json({ 
-            message: 'Blocked users updated', 
+            message: `${type} blocked users updated`, 
             appStatus: updatedStatus 
         });
     } catch (error) {
-        console.error('Error updating blocked users:', error);
+        console.error(`Error updating ${type} blocked users:`, error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };

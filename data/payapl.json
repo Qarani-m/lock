@@ -1,5 +1,5 @@
 {
-  "isAppBlocked": false,
+  "isAppBlocked": true,
   "blockedUsers": [
     {
       "userId": "userId19",
@@ -10,6 +10,11 @@
       "userId": "userId619",
       "userEmail": "email@gmail.com",
       "isActive": true
+    },
+    {
+      "userId": "userId6199",
+      "userEmail": "email@gmail.com",
+      "isActive": false
     }
   ]
 }
