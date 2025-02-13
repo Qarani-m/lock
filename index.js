@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 // Import routes
 const messageRoutes = require('./routes/messageRoutes');
@@ -23,6 +24,8 @@ const corsOptions = {
 // Middleware
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(bodyParser.json()); // Enable JSON parsing
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/messages', messageRoutes);

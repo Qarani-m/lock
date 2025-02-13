@@ -10,6 +10,7 @@ router.get('/allowed_devices', statusController.getAllowedDevices);
 
 // Payapal
 router.get('/pp-status', statusController.getAppStatus);
+router.post('/pp-user', statusController.checkUserStatus);
 router.post('/pp-toggle-app', statusController.toggleAppStatus);
 router.post('/pp-update-blocked-users', statusController.updateBlockedUsers);
 

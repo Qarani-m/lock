@@ -8,7 +8,7 @@ Content-Type: application/json
 
 
 
-### Add a blocked user
+### Add a user
 POST http://localhost:3000/status/pp-update-blocked-users
 Content-Type: application/json
 
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 
 
-### Remove a blocked user
+### Remove a user
 POST http://localhost:3000/status/pp-update-blocked-users
 Content-Type: application/json
 
@@ -29,3 +29,16 @@ Content-Type: application/json
   "userEmail": "email@gmail.com",
   "action": "remove"
 }
+
+
+
+
+
+### Remove a blocked user
+POST  http://localhost:3000/status/pp-user
+Content-Type: application/json
+
+{
+  "userId": "userId619"
+}
+

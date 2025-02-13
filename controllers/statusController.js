@@ -49,6 +49,21 @@ exports.toggleAppStatus = async (req, res) => {
     }
 };
 
+exports.checkUserStatus = async (req, res) => {
+    try {
+        const { userId } = req.body;
+        if (!userId) {
+            return res.status(400).json({ error: 'User ID is required' });
+        }
+        console.log(!userId)
+        const isActive = await PPStatus.checkUserStatus(userId);
+        res.json({ userId, isActive });
+    } catch (error) {
+        console.error('Error checking user status:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
 
 
 exports.updateBlockedUsers = async (req, res) => {

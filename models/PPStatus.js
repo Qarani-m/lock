@@ -59,6 +59,11 @@ class PPStatus {
         );
         return await this.writeStatusFile(status);
     }
+    async checkUserStatus(userId) {
+        const status = await this.readStatusFile();
+        const user = status.blockedUsers.find(user => user.userId === userId);
+        return user ? user.isActive : false;
+    }
 }
 
 module.exports = new PPStatus();
