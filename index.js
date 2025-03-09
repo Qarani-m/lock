@@ -36,6 +36,24 @@ app.use('/ext', statusRoutes);
 
 
 
+
+app.all('*', (req, res) => {
+  console.log('Request Details:');
+  console.log('Method:', req.method);               // Logs the HTTP method (GET, POST, etc.)
+  console.log('URL:', req.originalUrl);              // Logs the full requested URL
+  console.log('Body:', req.body);                    // Logs the request body
+  console.log('Headers:', req.headers);              // Logs the request headers
+  console.log('Params:', req.params);                // Logs the request parameters
+  console.log('Query:', req.query);                  // Logs the query string (if any)
+  console.log('IP Address:', req.ip);                // Logs the IP address of the client
+  console.log('User-Agent:', req.headers['user-agent']); // Logs the user-agent (browser or client type)
+
+  // Send a response back
+  res.send('Request logged successfully!');
+});
+
+
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
