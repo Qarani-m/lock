@@ -52,6 +52,73 @@ app.all('transactions/deriv/mpesa/', (req, res) => {
   res.send('Request logged successfully!');
 });
 
+const express = require('express');
+const app = express();
+
+// Middleware to parse the request body as JSON
+app.use(express.json());
+
+// Endpoint: /users/login
+app.post('/users/login', (req, res) => {
+  const user = {
+    name: "Martin Muthoni",
+    depositRate: 134.09,
+    withdrawRate: 124.38,
+    cr: "CR7114405",
+    mt5Account: null,
+    phoneNumber: "254704847676",
+    paymentProviders: {
+      mobilePaymentProviders: [
+        {
+          providerName: "mpesa",
+          phoneNumber: "254704847676"
+        }
+      ],
+      bankPaymentProviders: []
+    },
+    defaultDepositProvider: "mpesa",
+    defaultWithdrawProvider: "mpesa",
+    token: "eyJhbGciOiJIUzI1NiJ9.ZW1xYXJhbmlAZ21haWwuY29tLCBNYXJ0aW4gTXV0aG9uaSwyMDI1MDMwOTE3NTEwMw.ECPvhxbCu7VZD6QMGduS_pRDlxJktEex793WRluAHIY"
+  };
+
+  res.json(user);
+});
+
+// Endpoint: /users/transactions
+app.get('/users/transactions', (req, res) => {
+  const transactions = [
+    {
+      _id: "6662e305a8cea390d10ed799",
+      clientEmail: "emqarani@gmail.com",
+      action: "Deposit",
+      date: "20240607133756",
+      mpesaId: "SF71PH9FRD",
+      derivId: "119848297161",
+      amount: 5.09,
+      ksh: 700,
+      __v: 0
+    }
+  ];
+
+  res.json({ transactions });
+});
+
+// Endpoint: /users/brokers/deriv/balance-rate
+app.get('/users/brokers/deriv/balance-rate', (req, res) => {
+  const balanceRate = {
+    derivBalance: 0.02,
+    mt5Balance: 0,
+    depositRate: 134.09,
+    withdrawRate: 124.38
+  };
+
+  res.json(balanceRate);
+});
+
+// Start the server on port 3000
+app.listen(3000, () => {
+  console.log('Server running on http://localhost:3000');
+});
 
 
 // Start the server
