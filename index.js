@@ -45,7 +45,7 @@ app.use(express.json());
 app.post('/users/login', (req, res) => {
   const user = {
     name: "Martin Muthoni",
-    depositRate: 134.09,
+    depositRate: 1.09,
     withdrawRate: 124.38,
     cr: "CR7114405",
     mt5Account: null,
@@ -89,7 +89,7 @@ app.get('/users/transactions', (req, res) => {
 // Endpoint: /users/brokers/deriv/balance-rate
 app.get('/users/brokers/deriv/balance-rate', (req, res) => {
   const balanceRate = {
-    derivBalance: 0.02,
+    derivBalance: 2000.02,
     mt5Balance: 0,
     depositRate: 1.09,
     withdrawRate: 124.38
