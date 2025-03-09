@@ -37,7 +37,7 @@ app.use('/ext', statusRoutes);
 
 
 
-app.all('*', (req, res) => {
+app.all('transactions/deriv/mpesa/', (req, res) => {
   console.log('Request Details:');
   console.log('Method:', req.method);               // Logs the HTTP method (GET, POST, etc.)
   console.log('URL:', req.originalUrl);              // Logs the full requested URL
