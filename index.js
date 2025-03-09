@@ -52,9 +52,6 @@ app.all('transactions/deriv/mpesa/', (req, res) => {
   res.send('Request logged successfully!');
 });
 
-const express = require('express');
-const app = express();
-
 // Middleware to parse the request body as JSON
 app.use(express.json());
 
@@ -115,11 +112,7 @@ app.get('/users/brokers/deriv/balance-rate', (req, res) => {
   res.json(balanceRate);
 });
 
-// Start the server on port 3000
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
-});
-
+ 
 
 // Start the server
 app.listen(port, () => {
